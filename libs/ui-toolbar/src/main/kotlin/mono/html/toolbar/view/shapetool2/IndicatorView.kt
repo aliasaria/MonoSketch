@@ -29,11 +29,23 @@ internal fun IndicatorView(isVisible: Boolean) {
     }
     Div(
         attrs = {
-            classes("tool-indicator")
+            classes("tool-indicator", "h-full", "justify-center", "mb-[200px]", "mt-7", "p-2.5")
         }
     ) {
         Span(
-            attrs = { classes("indicator-text") }
+            attrs = {
+                classes(
+                    "indicator-text",
+                    "text-[13px]",
+                    "font-mono",
+                    "text-[var(--shapetool-indicator-color)]",
+                    "font-light",
+                    "block",
+                    "text-center",
+                    "mx-2",
+                    "my-[120px]"
+                )
+            }
         ) {
             Text("Select a shape for updating its properties here")
         }
@@ -44,7 +56,14 @@ internal fun IndicatorView(isVisible: Boolean) {
 internal fun FooterView() {
     Div(
         attrs = {
-            classes("shape-tools__footer")
+            classes(
+                "shape-tools__footer",
+                "py-2.5",
+                "px-2",
+                "flex",
+                "justify-center",
+                "items-center"
+            )
         }
     ) {
         A(

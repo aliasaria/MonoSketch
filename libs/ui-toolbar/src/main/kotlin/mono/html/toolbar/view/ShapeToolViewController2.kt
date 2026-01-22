@@ -42,7 +42,7 @@ class ShapeToolViewController2(
         }
         renderComposable(container) {
             Div(
-                attrs = { classes("shape-tools__body") }
+                attrs = { classes("h-full", "overflow-y-auto", "flex", "flex-col") }
             ) {
                 ReorderSectionView(
                     isVisible = viewModel.reorderToolVisibilityState.value,

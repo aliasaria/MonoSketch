@@ -54,7 +54,7 @@ internal fun AppearanceToolView(
             "Border",
             isAvailable = viewModel.shapeBorderTypeState.value != null
         ) {
-            Div(attrs = { classes("border-row") }) {
+            Div(attrs = { classes("flex", "flex-row", "items-center", "justify-start", "gap-4") }) {
                 OptionsCloud(
                     viewModel.strokeOptions,
                     Characters.NBSP,
@@ -79,7 +79,7 @@ internal fun AppearanceToolView(
             "Stroke",
             isAvailable = viewModel.lineStrokeTypeState.value != null
         ) {
-            Div(attrs = { classes("border-row") }) {
+            Div(attrs = { classes("flex", "flex-row", "items-center", "justify-start", "gap-4") }) {
                 OptionsCloud(
                     viewModel.strokeOptions,
                     Characters.NBSP,
@@ -138,9 +138,9 @@ private fun Tool(
         return
     }
     Div(
-        attrs = { classes("tool-appearance") }
+        attrs = { classes("flex", "flex-col", "mb-4") }
     ) {
-        Span(attrs = { classes("tool-title") }) {
+        Span(attrs = { classes("text-xs", "select-none", "mb-1", "text-[var(--shapetool-tool-title-color)]") }) {
             Text(title)
         }
         content()
@@ -159,7 +159,7 @@ private fun OptionsCloud(
         return
     }
     Div(
-        attrs = { classes("comp-option-cloud-layout") }
+        attrs = { classes("comp-option-cloud-layout", "flex", "flex-wrap", "gap-[7px]") }
     ) {
         Option(
             disabledStateText.toString(),
@@ -190,6 +190,12 @@ private fun Option(
         attrs = {
             classes(
                 "cloud-item",
+                "flex",
+                "justify-center",
+                "items-center",
+                "rounded",
+                "cursor-pointer",
+                "p-[3px]",
                 "dash-border" to isDashBorder,
                 "selected" to isSelected
             )
@@ -198,7 +204,7 @@ private fun Option(
         }
     ) {
         Span(
-            attrs = { classes("monofont") }
+            attrs = { classes("font-mono", "text-lg") }
         ) {
             Text(text)
         }
@@ -216,7 +222,7 @@ private fun DashPattern(
     }
 
     Div(
-        attrs = { classes("comp-dash-layout") }
+        attrs = { classes("mt-2", "ml-2", "flex", "justify-between") }
     ) {
         DashInput("Dash", dashPattern.dash, 1) {
             setOneTimeAction(oneTimeActionFactory(it, null, null))
@@ -232,7 +238,7 @@ private fun DashPattern(
 
 @Composable
 private fun DashInput(name: String, value: Int, minValue: Int?, onValueChange: (Int?) -> Unit) {
-    Div(attrs = { classes("pattern") }) {
+    Div(attrs = { classes("flex", "items-center", "w-[30%]") }) {
         NumberTextField(name, value, minValue, isChildBound = true, onValueChange = onValueChange)
     }
 }

@@ -1,22 +1,9 @@
-.comp-dash-layout {
-    display: flex;
-    justify-content: space-between;
+// Dash pattern layout handled by Tailwind in AppearanceToolView.kt
+// Keep text-input overrides for child bound inputs
+.text-input-layout.child-bounds {
+    padding-left: 0;
 
-    span {
-        color: var(--shapetool-tool-subtitle-color);
-    }
-
-    .pattern {
-        display: flex;
-        align-items: center;
-        width: 30%;
-    }
-
-    .text-input-layout {
-        padding-left: 0;
-
-        .text-input {
-            margin-left: 6px;
-        }
+    .text-input {
+        margin-left: 6px;
     }
 }
