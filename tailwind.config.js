@@ -18,6 +18,8 @@ module.exports = {
       spacing: {
         'nav': '48px',
         'shape-tools': '250px',
+        'canvas-left': '33px',
+        'canvas-top': '18px',
       },
       zIndex: {
         'keyboard-shortcuts': '200',
