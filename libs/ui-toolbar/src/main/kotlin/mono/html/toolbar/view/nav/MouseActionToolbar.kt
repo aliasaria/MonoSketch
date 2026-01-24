@@ -64,10 +64,10 @@ private fun MouseActionButton(
                     "rounded-md",
                     "ml-1.5",
                     "border",
-                    "border-transparent",
                     "cursor-pointer",
                     "select-none",
                     "hover:bg-[var(--nav-action-hover-bg)]",
+                    "border-transparent" to !isSelected,
                     "border-[var(--nav-action-selected-border)]" to isSelected
                 )
             }
