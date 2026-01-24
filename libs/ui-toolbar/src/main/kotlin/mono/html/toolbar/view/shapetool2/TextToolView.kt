@@ -77,7 +77,7 @@ private fun Group(
             Text(label)
         }
 
-        Div(attrs = { classes("comp-option-cloud-layout", "flex", "flex-wrap", "gap-[7px]") }) {
+        Div(attrs = { classes("flex", "flex-wrap", "gap-[7px]") }) {
             for (icon in icons) {
                 Icon(icon.iconPath, icon == selectedIcon) {
                     setOneTimeAction(icon.toTextAlignment())
@@ -96,14 +96,26 @@ private fun Icon(
     Div(
         attrs = {
             classes(
-                "cloud-item",
                 "flex",
                 "justify-center",
                 "items-center",
                 "rounded",
                 "cursor-pointer",
                 "p-[3px]",
-                "selected" to isSelected
+                // Base border
+                "border",
+                "border-[var(--comp-option-cloud-border-color)]",
+                // Hover state
+                "hover:border-transparent",
+                "hover:outline",
+                "hover:outline-[1.5px]",
+                "hover:outline-[var(--comp-option-cloud-border-color)]",
+                // Conditional: selected
+                "border-transparent" to isSelected,
+                "outline" to isSelected,
+                "outline-[1.5px]" to isSelected,
+                "outline-[var(--comp-option-cloud-border-selected-color)]" to isSelected,
+                "text-[var(--comp-option-cloud-border-selected-color)]" to isSelected
             )
 
             onClick { onSelect() }

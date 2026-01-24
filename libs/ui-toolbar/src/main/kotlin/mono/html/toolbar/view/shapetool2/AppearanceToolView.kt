@@ -17,11 +17,6 @@ import mono.shape.extra.manager.predefined.PredefinedStraightStrokeStyle
 import mono.shape.extra.style.StraightStrokeDashPattern
 import mono.ui.compose.components.Icons
 import mono.ui.compose.ext.classes
-import org.jetbrains.compose.web.css.background
-import org.jetbrains.compose.web.css.height
-import org.jetbrains.compose.web.css.percent
-import org.jetbrains.compose.web.css.px
-import org.jetbrains.compose.web.css.width
 import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Span
@@ -159,7 +154,7 @@ private fun OptionsCloud(
         return
     }
     Div(
-        attrs = { classes("comp-option-cloud-layout", "flex", "flex-wrap", "gap-[7px]") }
+        attrs = { classes("flex", "flex-wrap", "gap-[7px]") }
     ) {
         Option(
             disabledStateText.toString(),
@@ -189,15 +184,30 @@ private fun Option(
     Div(
         attrs = {
             classes(
-                "cloud-item",
                 "flex",
                 "justify-center",
                 "items-center",
                 "rounded",
                 "cursor-pointer",
                 "p-[3px]",
-                "dash-border" to isDashBorder,
-                "selected" to isSelected
+                // Base border
+                "border",
+                "border-[var(--comp-option-cloud-border-color)]",
+                // Hover state
+                "hover:border-transparent",
+                "hover:outline",
+                "hover:outline-[1.5px]",
+                "hover:outline-[var(--comp-option-cloud-border-color)]",
+                // Conditional: dash border
+                "border-dashed" to isDashBorder,
+                "hover:outline-dashed" to isDashBorder,
+                // Conditional: selected
+                "border-transparent" to isSelected,
+                "outline" to isSelected,
+                "outline-[1.5px]" to isSelected,
+                "outline-[var(--comp-option-cloud-border-selected-color)]" to isSelected,
+                "text-[var(--comp-option-cloud-border-selected-color)]" to isSelected,
+                "outline-dashed" to (isSelected && isDashBorder)
             )
 
             onClick { onSelect() }
@@ -253,17 +263,32 @@ private fun RoundedCorner(
         return
     }
     Div(attrs = {
-        style {
-            width(1.px)
-            height(80.percent)
-            background("var(--shapetool-section-divider-color)")
-        }
+        classes("w-px", "h-4/5", "bg-[var(--shapetool-section-divider-color)]")
     })
 
-    Div(attrs = { classes("comp-option-cloud-layout") }) {
+    Div {
         Div(
             attrs = {
-                classes("cloud-item", "corner", "selected" to isRounded)
+                classes(
+                    // Base layout from cloud-item
+                    "flex",
+                    "justify-center",
+                    "items-center",
+                    "rounded",
+                    "cursor-pointer",
+                    // Corner-specific styles
+                    "border-none",
+                    "p-0.5",
+                    "opacity-75",
+                    // Hover state
+                    "hover:opacity-100",
+                    "hover:outline",
+                    "hover:outline-1",
+                    "hover:outline-[var(--text-input-border-color)]",
+                    // Conditional: selected
+                    "opacity-100" to isRounded,
+                    "outline-none" to isRounded
+                )
                 tooltip("Rounded corner", position = TooltipPosition.TOP)
 
                 onClick {
