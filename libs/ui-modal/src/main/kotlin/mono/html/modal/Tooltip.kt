@@ -98,17 +98,16 @@ private class Tooltip {
     ) {
         val anchorPositionRect = anchorView.getBoundingClientRect()
 
-        val arrow = body.Div("fixed z-tooltip text-[var(--tooltip-bg)] flex") {
+        val arrow = body.Div("") {
             ArrowIcon(position)
         }
+        arrow.className = "fixed z-tooltip text-[var(--tooltip-bg)] flex"
 
         arrowView = arrow
-        bodyView = body.Span(
-            "fixed z-tooltip bg-[var(--tooltip-bg)] text-[var(--tooltip-color)] pt-0.5 px-2 pb-px rounded text-[11px] font-mono",
-            text
-        ) {
+        bodyView = body.Span("", text) {
             style("visibility" to "hidden")
         }
+        bodyView?.className = "fixed z-tooltip bg-[var(--tooltip-bg)] text-[var(--tooltip-color)] pt-0.5 px-2 pb-px rounded text-[11px] font-mono"
         post {
             arrow.adjustArrowPosition(anchorPositionRect, position)
             bodyView?.adjustTooltipBodyPosition(
