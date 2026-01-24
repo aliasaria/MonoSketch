@@ -158,14 +158,16 @@ private class Tooltip {
             TooltipPosition.LEFT -> {
                 style(
                     "left" to (arrowPositionRect.left - clientWidth).px,
-                    "top" to (anchorPositionRect.centerYPx - halfHeightPx).px
+                    "top" to (anchorPositionRect.centerYPx - halfHeightPx).px,
+                    "visibility" to "visible"
                 )
             }
 
             TooltipPosition.RIGHT -> {
                 style(
                     "left" to arrowPositionRect.right.px,
-                    "top" to (anchorPositionRect.centerYPx - halfHeightPx).px
+                    "top" to (anchorPositionRect.centerYPx - halfHeightPx).px,
+                    "visibility" to "visible"
                 )
             }
 
@@ -173,7 +175,8 @@ private class Tooltip {
                 val leftPx = (anchorPositionRect.centerXPx - halfWidthPx)
                 style(
                     "top" to (arrowPositionRect.top - clientHeight + 0.5).px,
-                    "left" to leftPx.coerceIn(0.0, leftMost.toDouble()).px
+                    "left" to leftPx.coerceIn(0.0, leftMost.toDouble()).px,
+                    "visibility" to "visible"
                 )
             }
 
@@ -181,7 +184,8 @@ private class Tooltip {
                 val leftPx = (anchorPositionRect.centerXPx - halfWidthPx)
                 style(
                     "top" to arrowPositionRect.bottom.px,
-                    "left" to leftPx.coerceIn(4.0, leftMost.toDouble()).px
+                    "left" to leftPx.coerceIn(4.0, leftMost.toDouble()).px,
+                    "visibility" to "visible"
                 )
             }
         }
