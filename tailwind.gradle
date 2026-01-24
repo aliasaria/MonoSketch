@@ -2,10 +2,24 @@
 task compileTailwind(type: Exec) {
     description = 'Compile Tailwind CSS'
     group = 'build'
-    
+
     workingDir projectDir
     commandLine 'npm', 'run', 'tailwind:build'
-    
+
+    // Check if tailwindcss is installed, if not, install dependencies
+    doFirst {
+        def nodeModulesDir = file("${projectDir}/node_modules")
+        def tailwindcssPath = file("${projectDir}/node_modules/.bin/tailwindcss")
+
+        if (!nodeModulesDir.exists() || !tailwindcssPath.exists()) {
+            logger.lifecycle("Tailwind CSS not found. Installing npm dependencies...")
+            exec {
+                workingDir projectDir
+                commandLine 'npm', 'install'
+            }
+        }
+    }
+
     inputs.files(
         fileTree("${projectDir}/src/main/css"),
         file("${projectDir}/tailwind.config.js"),
