@@ -57,11 +57,30 @@ task mergeTailwindCss {
         def tempFile = file("${outputDir}/main.css.temp")
 
         if (tailwindFile.exists() && mainCssFile.exists()) {
-            // Create temp file with Tailwind first, then main.css content
+            def mainCssContent = mainCssFile.text
+            def tailwindContent = tailwindFile.text
+
+            // Extract @import statements from main.css (they must come first in CSS)
+            def imports = []
+            def mainWithoutImports = mainCssContent.replaceAll(/@import[^;]+;/) { match ->
+                imports.add(match)
+                return ''
+            }
+
+            // Create merged file: @imports first, then Tailwind, then rest of main.css
             tempFile.withWriter { writer ->
-                writer.write(tailwindFile.text)
+                // Write @import statements first (CSS spec requires them at the top)
+                imports.each { importStatement ->
+                    writer.write(importStatement)
+                    writer.write('\n')
+                }
+
+                // Write Tailwind CSS
+                writer.write(tailwindContent)
                 writer.write('\n')
-                writer.write(mainCssFile.text)
+
+                // Write the rest of main.css (without @imports)
+                writer.write(mainWithoutImports)
             }
 
             // Replace main.css with merged content
@@ -71,7 +90,7 @@ task mergeTailwindCss {
             // Remove standalone tailwind.css
             tailwindFile.delete()
 
-            logger.lifecycle("Merged tailwind.css into main.css")
+            logger.lifecycle("Merged tailwind.css into main.css (${imports.size()} @import statements moved to top)")
         }
     }
 }
