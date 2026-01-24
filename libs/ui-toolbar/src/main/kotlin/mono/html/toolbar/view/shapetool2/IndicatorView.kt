@@ -12,11 +12,10 @@ import mono.ui.compose.ext.SvgPath
 import mono.ui.compose.ext.fill
 import mono.ui.compose.ext.size
 import mono.ui.compose.ext.viewBox
+import mono.ui.compose.ext.classes
 import org.jetbrains.compose.web.attributes.ATarget
 import org.jetbrains.compose.web.attributes.href
 import org.jetbrains.compose.web.attributes.target
-import org.jetbrains.compose.web.css.marginLeft
-import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.A
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Span
@@ -29,13 +28,12 @@ internal fun IndicatorView(isVisible: Boolean) {
     }
     Div(
         attrs = {
-            classes("tool-indicator", "h-full", "justify-center", "mb-[200px]", "mt-7", "p-2.5")
+            classes("h-full", "justify-center", "mb-[200px]", "mt-7", "p-2.5")
         }
     ) {
         Span(
             attrs = {
                 classes(
-                    "indicator-text",
                     "text-[13px]",
                     "font-mono",
                     "text-[var(--shapetool-indicator-color)]",
@@ -57,7 +55,6 @@ internal fun FooterView() {
     Div(
         attrs = {
             classes(
-                "shape-tools__footer",
                 "py-2.5",
                 "px-2",
                 "flex",
@@ -68,6 +65,16 @@ internal fun FooterView() {
     ) {
         A(
             attrs = {
+                classes(
+                    "leading-[14px]",
+                    "text-sm",
+                    "no-underline",
+                    "text-[var(--shapetool-footer-color)]",
+                    "flex",
+                    "items-center",
+                    "hover:text-[var(--shapetool-footer-hover-color)]",
+                    "active:text-[var(--shapetool-footer-active-color)]"
+                )
                 href("https://github.com/tuanchauict/MonoSketch")
                 target(ATarget.Blank)
             }
@@ -85,9 +92,7 @@ internal fun FooterView() {
             }
             Span(
                 attrs = {
-                    style {
-                        marginLeft(6.px)
-                    }
+                    classes("ml-1.5")
                 }
             ) {
                 Text("GitHub")

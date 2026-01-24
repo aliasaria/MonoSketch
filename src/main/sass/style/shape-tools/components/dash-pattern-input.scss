@@ -1,9 +1,0 @@
-// Dash pattern layout handled by Tailwind in AppearanceToolView.kt
-// Keep text-input overrides for child bound inputs
-.text-input-layout.child-bounds {
-    padding-left: 0;
-
-    .text-input {
-        margin-left: 6px;
-    }
-}
