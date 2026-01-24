@@ -107,7 +107,9 @@ private class Tooltip {
         bodyView = body.Span("", text) {
             style("visibility" to "hidden")
         }
-        bodyView?.className = "fixed z-tooltip bg-[var(--tooltip-bg)] text-[var(--tooltip-color)] pt-0.5 px-2 pb-px rounded text-[11px] font-mono"
+        bodyView?.className =
+            "fixed z-tooltip bg-[var(--tooltip-bg)] text-[var(--tooltip-color)] " +
+            "pt-0.5 px-2 pb-px rounded text-[11px] font-mono"
         post {
             arrow.adjustArrowPosition(anchorPositionRect, position)
             bodyView?.adjustTooltipBodyPosition(

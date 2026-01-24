@@ -135,7 +135,16 @@ private fun Tool(
     Div(
         attrs = { classes("flex", "flex-col", "mb-4") }
     ) {
-        Span(attrs = { classes("text-xs", "select-none", "mb-1", "text-[var(--shapetool-tool-title-color)]") }) {
+        Span(
+            attrs = {
+                classes(
+                    "text-xs",
+                    "select-none",
+                    "mb-1",
+                    "text-[var(--shapetool-tool-title-color)]"
+                )
+            }
+        ) {
             Text(title)
         }
         content()

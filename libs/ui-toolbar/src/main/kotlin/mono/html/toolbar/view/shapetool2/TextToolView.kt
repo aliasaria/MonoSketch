@@ -73,7 +73,16 @@ private fun Group(
     setOneTimeAction: (OneTimeActionType) -> Unit
 ) {
     Div(attrs = { classes("flex", "items-center", "pb-2") }) {
-        Span(attrs = { classes("w-[60px]", "text-xs", "select-none", "text-[var(--shapetool-tool-title-color)]") }) {
+        Span(
+            attrs = {
+                classes(
+                    "w-[60px]",
+                    "text-xs",
+                    "select-none",
+                    "text-[var(--shapetool-tool-title-color)]"
+                )
+            }
+        ) {
             Text(label)
         }
 
