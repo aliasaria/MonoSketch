@@ -98,13 +98,13 @@ private class Tooltip {
     ) {
         val anchorPositionRect = anchorView.getBoundingClientRect()
 
-        val arrow = body.Div("fixed z-[10000] text-[var(--tooltip-bg)] flex") {
+        val arrow = body.Div("fixed z-tooltip text-[var(--tooltip-bg)] flex") {
             ArrowIcon(position)
         }
 
         arrowView = arrow
         bodyView = body.Span(
-            "fixed z-[10000] bg-[var(--tooltip-bg)] text-[var(--tooltip-color)] pt-0.5 px-2 pb-px rounded text-[11px] font-['Jetbrains_Mono',Menlo,'Courier_New',Courier,monospace]",
+            "fixed z-tooltip bg-[var(--tooltip-bg)] text-[var(--tooltip-color)] pt-0.5 px-2 pb-px rounded text-[11px] font-mono",
             text
         ) {
             style("visibility" to "hidden")
