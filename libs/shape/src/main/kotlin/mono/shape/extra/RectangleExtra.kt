@@ -21,7 +21,8 @@ data class RectangleExtra(
     val isBorderEnabled: Boolean,
     val userSelectedBorderStyle: StraightStrokeStyle,
     val dashPattern: StraightStrokeDashPattern,
-    val corner: RectangleBorderCornerPattern
+    val corner: RectangleBorderCornerPattern,
+    val isShadowEnabled: Boolean = false
 ) : ShapeExtra() {
     constructor(
         isFillEnabled: Boolean,
@@ -29,7 +30,8 @@ data class RectangleExtra(
         isBorderEnabled: Boolean,
         userSelectedBorderStyle: StraightStrokeStyle,
         dashPattern: StraightStrokeDashPattern,
-        isRoundedCorner: Boolean
+        isRoundedCorner: Boolean,
+        isShadowEnabled: Boolean = false
     ) : this(
         isFillEnabled,
         userSelectedFillStyle,
@@ -40,7 +42,8 @@ data class RectangleExtra(
             RectangleBorderCornerPattern.ENABLED
         } else {
             RectangleBorderCornerPattern.DISABLED
-        }
+        },
+        isShadowEnabled
     )
 
     val isRoundedCorner: Boolean = corner == RectangleBorderCornerPattern.ENABLED
@@ -61,7 +64,8 @@ data class RectangleExtra(
         isBorderEnabled = serializableExtra.isBorderEnabled,
         ShapeExtraManager.getRectangleBorderStyle(serializableExtra.userSelectedBorderStyleId),
         StraightStrokeDashPattern.fromSerializableValue(serializableExtra.dashPattern),
-        RectangleBorderCornerPattern.fromSerializableValue(serializableExtra.corner)
+        RectangleBorderCornerPattern.fromSerializableValue(serializableExtra.corner),
+        isShadowEnabled = serializableExtra.isShadowEnabled
     )
 
     fun toSerializableExtra(): SerializableRectangle.SerializableExtra =
@@ -71,6 +75,7 @@ data class RectangleExtra(
             isBorderEnabled = isBorderEnabled,
             userSelectedBorderStyleId = userSelectedBorderStyle.id,
             dashPattern = dashPattern.toSerializableValue(),
-            corner = corner.toSerializableValue()
+            corner = corner.toSerializableValue(),
+            isShadowEnabled = isShadowEnabled
         )
 }

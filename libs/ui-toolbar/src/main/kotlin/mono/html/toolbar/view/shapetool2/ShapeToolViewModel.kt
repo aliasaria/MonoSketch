@@ -84,6 +84,9 @@ internal class ShapeToolViewModel(
     val shapeBorderRoundedCornerState: State<Boolean?> =
         rectangleAppearanceDataController.borderRoundedCornerLiveData.toState(lifecycleOwner)
 
+    val shapeShadowEnabledState: State<Boolean?> =
+        rectangleAppearanceDataController.shadowEnabledLiveData.toState(lifecycleOwner)
+
     val lineStrokeTypeState: State<CloudItemSelectionState?> =
         lineAppearanceDataController.strokeToolStateLiveData.toState(lifecycleOwner)
 

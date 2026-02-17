@@ -77,7 +77,8 @@ object ShapeExtraManager {
         endHeadAnchorCharId: String? = null,
 
         textHorizontalAlign: TextAlign.HorizontalAlign? = null,
-        textVerticalAlign: TextAlign.VerticalAlign? = null
+        textVerticalAlign: TextAlign.VerticalAlign? = null,
+        isShadowEnabled: Boolean? = null
     ) {
         defaultRectangleExtra = RectangleExtra(
             isFillEnabled ?: defaultRectangleExtra.isFillEnabled,
@@ -85,7 +86,8 @@ object ShapeExtraManager {
             isBorderEnabled ?: defaultRectangleExtra.isBorderEnabled,
             getRectangleBorderStyle(borderStyleId),
             borderDashPattern ?: defaultRectangleExtra.dashPattern,
-            isRoundedCorner = isBorderRoundedCorner ?: defaultRectangleExtra.isRoundedCorner
+            isRoundedCorner = isBorderRoundedCorner ?: defaultRectangleExtra.isRoundedCorner,
+            isShadowEnabled = isShadowEnabled ?: defaultRectangleExtra.isShadowEnabled
         )
 
         defaultLineExtra = LineExtra(

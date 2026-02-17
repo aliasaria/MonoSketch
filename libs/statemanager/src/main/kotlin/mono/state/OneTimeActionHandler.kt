@@ -107,6 +107,9 @@ internal class OneTimeActionHandler(
                 is OneTimeActionType.ChangeShapeBorderCornerExtra ->
                     setSelectedShapeBorderCornerExtra(it.isRoundedCorner)
 
+                is OneTimeActionType.ChangeShapeShadowExtra ->
+                    setSelectedShapeShadowExtra(it.isEnabled)
+
                 is OneTimeActionType.ChangeLineStrokeExtra ->
                     setSelectedLineStrokeExtra(it.isEnabled, it.newStrokeStyleId)
 
@@ -347,6 +350,31 @@ internal class OneTimeActionHandler(
                 RectangleBorderCornerPattern.DISABLED
             }
         val newRectangleExtra = rectangleExtra.copy(corner = newCorner)
+        val newExtra = when (singleShape) {
+            is Rectangle -> newRectangleExtra
+            is Text -> singleShape.extra.copy(boundExtra = newRectangleExtra)
+            is Group,
+            is Line,
+            is MockShape -> null
+        } ?: return
+        environment.shapeManager.execute(ChangeExtra(singleShape, newExtra))
+    }
+
+    private fun setSelectedShapeShadowExtra(isEnabled: Boolean) {
+        val singleShape = environment.getSelectedShapes().singleOrNull()
+        val rectangleExtra = when (singleShape) {
+            is Rectangle -> singleShape.extra
+            is Text -> singleShape.extra.boundExtra
+            is Group,
+            is Line,
+            is MockShape,
+            null -> null
+        }
+        if (singleShape == null || rectangleExtra == null) {
+            ShapeExtraManager.setDefaultValues(isShadowEnabled = isEnabled)
+            return
+        }
+        val newRectangleExtra = rectangleExtra.copy(isShadowEnabled = isEnabled)
         val newExtra = when (singleShape) {
             is Rectangle -> newRectangleExtra
             is Text -> singleShape.extra.copy(boundExtra = newRectangleExtra)
